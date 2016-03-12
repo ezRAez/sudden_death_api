@@ -1,6 +1,6 @@
 var mongoose = require('./database');
 
-var User = require('./models/user');
+var User = require('../models/user');
 
 var users = [
   { // 0
