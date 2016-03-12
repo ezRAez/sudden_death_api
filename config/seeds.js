@@ -1,4 +1,4 @@
-var mongoose = require('./config/database');
+var mongoose = require('./database');
 
 var User = require('./models/user');
 
@@ -20,7 +20,8 @@ User.remove({}, function(err) {
       console.log(err);
     } else {
       console.log("Database seeded with " + users.length  + " users.");
-      mongoose.disconnect();
+      mongoose.connection.close();
     }
+    process.exit();
   });
 });
