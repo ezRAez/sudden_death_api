@@ -4,6 +4,10 @@ var express = require('express'),
 // Require controllers.
 var usersController   = require('../controllers/users');
 
+router.get('/', function(req, res, next) {
+  res.json(msg: "Welcome to the Sudden Death API!");
+})
+
 //||||||||||||||||||||||||||--
 // AUTHENTICATION ROUTE
 //||||||||||||||||||||||||||--
