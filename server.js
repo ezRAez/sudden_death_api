@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(debugReq);
 
 // Defines all of our "dynamic" routes.
-app.use('/api', routes);
+app.use('/', routes);
 
 // Catches all 404 routes.
 app.use(function(req, res, next) {

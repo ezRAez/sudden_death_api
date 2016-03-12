@@ -11,18 +11,18 @@ router.get('/', function(req, res, next) {
 //||||||||||||||||||||||||||--
 // AUTHENTICATION ROUTE
 //||||||||||||||||||||||||||--
-router.post('/login',            usersController.userAuth);
+router.post('api/login',            usersController.userAuth);
 
 // Get info about currently logged in user
-router.get('/me',                usersController.tokenVerify, usersController.decodeToken);
+router.get('api/me',                usersController.tokenVerify, usersController.decodeToken);
 
 //||||||||||||||||||||||||||--
 // USERS ROUTES
 //||||||||||||||||||||||||||--
-router.get('/users',                                          usersController.userIndex);
-router.get('/users/:user_id',    usersController.tokenVerify, usersController.userShow);
-router.post('/users',                                         usersController.userCreate);
-router.put('/users/:user_id',    usersController.tokenVerify, usersController.userUpdate);
-router.delete('/users/:user_id', usersController.tokenVerify, usersController.userDelete);
+router.get('api/users',                                          usersController.userIndex);
+router.get('api/users/:user_id',    usersController.tokenVerify, usersController.userShow);
+router.post('api/users',                                         usersController.userCreate);
+router.put('api/users/:user_id',    usersController.tokenVerify, usersController.userUpdate);
+router.delete('api/users/:user_id', usersController.tokenVerify, usersController.userDelete);
 
 module.exports = router;
