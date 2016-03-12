@@ -66,7 +66,7 @@ function userCreate(req, res) {
         }
 
         // return a message
-        res.json({ message: "Let's get jamnin'!" });
+        res.json({ message: "Prepare for Sudden Death!" });
       });
 
 };
