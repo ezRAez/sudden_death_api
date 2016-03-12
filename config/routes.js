@@ -5,7 +5,7 @@ var express = require('express'),
 var usersController   = require('../controllers/users');
 
 router.get('/', function(req, res, next) {
-  res.json(msg: "Welcome to the Sudden Death API!");
+  res.json({msg: "Welcome to the Sudden Death API!"});
 })
 
 //||||||||||||||||||||||||||--
