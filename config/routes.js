@@ -3,6 +3,7 @@ var express = require('express'),
 
 // Require controllers.
 var usersController   = require('../controllers/users');
+var spotsController   = require('../controllers/spots');
 
 router.get('/', function(req, res, next) {
   res.json({msg: "Welcome to the Sudden Death API!"});
@@ -24,5 +25,14 @@ router.get('/api/users/:user_id',    usersController.tokenVerify, usersControlle
 router.post('/api/users',                                         usersController.userCreate);
 router.put('/api/users/:user_id',    usersController.tokenVerify, usersController.userUpdate);
 router.delete('/api/users/:user_id', usersController.tokenVerify, usersController.userDelete);
+
+//||||||||||||||||||||||||||--
+// SPOT ROUTES
+//||||||||||||||||||||||||||--
+router.get('/api/spots',                                          spotsController.spotIndex);
+router.get('/api/spots/:spot_id',    usersController.tokenVerify, spotsController.spotShow);
+router.post('/api/spots',                                         spotsController.spotCreate);
+router.put('/api/spots/:spot_id',    usersController.tokenVerify, spotsController.spotUpdate);
+router.delete('/api/spots/:spot_id', usersController.tokenVerify, spotsController.spotDelete);
 
 module.exports = router;
