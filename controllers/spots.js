@@ -7,6 +7,7 @@ var spotsController = {
   spotCreate:  spotCreate,
   spotUpdate:  spotUpdate,
   spotDelete:  spotDelete,
+  spotsWithin: spotsWithin,
 };
 
 //||||||||||||||||||||||||||--
@@ -39,8 +40,7 @@ function spotShow(req, res) {
 function spotCreate(req, res) {
     var spot          = new Spot();
     spot.name         = req.body.name;
-    spot.latitude     = req.body.latitude;
-    spot.longitude    = req.body.longitude;
+    spot.lonlat       = [req.body.longitude, req.body.latitude];
     spot.address      = req.body.address;
     spot.indoor       = req.body.indoor;
 
@@ -65,8 +65,9 @@ function spotUpdate(req, res) {
 
         // set the new spot information if it exists in the request
         if (req.body.name)       spot.name      = req.body.name;
-        if (req.body.latitude)   spot.latitude  = req.body.latitude;
-        if (req.body.longitude)  spot.longitude = req.body.longitude;
+        if (req.body.latitude && req.body.longitude) {
+          spot.lonlat = [req.body.longitude, req.body.latitude];
+        }
         if (req.body.address)    spot.address   = req.body.address;
         if (req.body.indoor)     spot.indoor    = req.body.indoor;
 
@@ -91,6 +92,36 @@ function spotDelete(req, res) {
 
         res.json({ message: 'Spot deleted' });
   });
+}
+
+//||||||||||||||||||||||||||--
+// FIND spot WITHIN
+//||||||||||||||||||||||||||--
+function spotsWithin(req, res) {
+  var distance = 1000 / 6371;
+
+  var query = Spot.find({'lonlat': {
+      $near: [
+        req.query.lon,
+        req.query.lat
+      ],
+      $maxDistance: distance
+      }
+    });
+
+  query.exec(function (err, spots) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    }
+    if (!spots) {
+      res.json({'msg': 'No Spots found.'});
+    }
+    if (spots) {
+      res.json(spots);
+    }
+  });
+
 }
 
 //||||||||||||||||||||||||||--
