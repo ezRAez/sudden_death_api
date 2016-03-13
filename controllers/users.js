@@ -80,14 +80,22 @@ function userUpdate(req, res) {
         if (err) res.send(err);
 
         // set the new user information if it exists in the request
-        if (req.body.name)      user.name      = req.body.name;
-        if (req.body.userName)  user.userName  = req.body.userName;
-        if (req.body.password)  user.password  = req.body.password;
-        if (req.body.email)     user.email     = req.body.email;
-        if (req.body.zip)       user.zip       = req.body.zip;
-        if (req.body.height)    user.height    = req.body.height;
-        if (req.body.represent) user.represent = req.body.represent;
-        if (req.body.picture)   user.picture   = req.body.picture;
+        if (req.body.name)            user.name            = req.body.name;
+        if (req.body.userName)        user.userName        = req.body.userName;
+        if (req.body.password)        user.password        = req.body.password;
+        if (req.body.email)           user.email           = req.body.email;
+        if (req.body.zip)             user.zip             = req.body.zip;
+        if (req.body.height)          user.height          = req.body.height;
+        if (req.body.represent)       user.represent       = req.body.represent;
+        if (req.body.picture)         user.picture         = req.body.picture;
+        if (req.body.respect)         user.respect         = req.body.respect;
+        if (req.body.wins)            user.wins            = req.body.wins;
+        if (req.body.losses)          user.losses          = req.body.losses;
+        if (req.body.forfeits)        user.forfeits        = req.body.forfeits;
+        if (req.body.outsideO)        user.outsideO        = req.body.outsideO;
+        if (req.body.insideO)         user.insideO         = req.body.insideO;
+        if (req.body.defense)         user.defense         = req.body.defense;
+        if (req.body.sportsmanship)   user.sportsmanship   = req.body.sportsmanship;
 
         // save the user
         user.save(function(err) {
@@ -144,16 +152,24 @@ function userAuth(req, res, next) {
             // if user is found and password is right
             // create a token
             var token = jwt.sign({
-              _id:       user._id,
-              userName:  user.userName,
-              name:      user.name,
-              email:     user.email,
-              zip:       user.zip,
-              height:    user.height,
-              picture:   user.picture,
-              represent: user.represent,
+              _id:            user._id,
+              name:           user.name,
+              userName:       user.userName,
+              email:          user.email,
+              zip:            user.zip,
+              height:         user.height,
+              represent:      user.represent,
+              picture:        user.picture,
+              respect:        user.respect,
+              wins:           user.wins,
+              losses:         user.losses,
+              forfeits:       user.forfeits,
+              outsideO:       user.outsideO,
+              insideO:        user.insideO,
+              defense:        user.defense,
+              sportsmanship:  user.sportsmanship,
             }, superSecret, {
-              expiresInMinutes: 43200 // expires in 30 days
+              expiresIn:      2592000 // expires in 30 days
             });
 
             // return the information including token as JSON
