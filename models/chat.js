@@ -15,7 +15,8 @@ var ChatSchema = new mongoose.Schema({
             },
   content:  { type: String, validate: [checkLength, "Messages must be shorter \
                                                      than 180 characters."] },
-
+  read:     Boolean,
+  sent:     Date
 });
 
 function checkLength(str) {
