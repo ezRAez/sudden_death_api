@@ -148,7 +148,7 @@ function userAuth(req, res, next) {
               userName:  user.userName,
               name:      user.name,
               email:     user.email,
-              zip:       user.userName,
+              zip:       user.zip,
               height:    user.height,
               represent: user.represent,
             }, superSecret, {
