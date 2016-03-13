@@ -98,7 +98,10 @@ function spotDelete(req, res) {
 // FIND spot WITHIN
 //||||||||||||||||||||||||||--
 function spotsWithin(req, res) {
-  var distance = 1000 / 6371;
+
+  // Get miles from query, or default to 10
+  var miles = req.query.miles || 10;
+  var distance =  miles / 3963.2;
 
   var query = Spot.find({'lonlat': {
       $near: [
