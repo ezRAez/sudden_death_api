@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    User = require('./user.js');
+    User = require('./user.js'),
+    Spot = require('./spot.js');
 
 var GameSchema = new mongoose.Schema({
   player1:   {
@@ -12,14 +13,23 @@ var GameSchema = new mongoose.Schema({
                 ref:      'User',
                 required: true
              },
-  status:    { type: Number, required: true },
-  winner_id: { type: Number, required: true },
-  location:  { type: Number, required: true },
-  time:      { type: Number, required: true },
+  status:    {
+                type:     String,
+                enum:     ['pending', 'accepted', 'complete']
+             },
+  winner_id: {
+                type:     mongoose.Schema.Types.ObjectId,
+                ref:      'User'
+             },
+  location:  {
+                type:     mongoose.Schema.Types.ObjectId,
+                ref:      'Spot'
+             },
+  time:                   Date
 });
 
 
 
-var Rating = mongoose.model('Rating', RatingSchema);
+var Game = mongoose.model('Game', GameSchema);
 
-module.exports = Rating;
+module.exports = Game;
