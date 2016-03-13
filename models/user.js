@@ -14,8 +14,8 @@ var UserSchema = new mongoose.Schema({
   wins:          { type: Number, default: 0 },
   losses:        { type: Number, default: 0 },
   forfeits:      { type: Number, default: 0 },
-  outsideO:     { type: Number, default: 0 },
-  insideO:      { type: Number, default: 0 },
+  outsideO:      { type: Number, default: 0 },
+  insideO:       { type: Number, default: 0 },
   defense:       { type: Number, default: 0 },
   sportsmanship: { type: Number, default: 0 }
 });
