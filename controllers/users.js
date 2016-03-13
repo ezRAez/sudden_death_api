@@ -150,6 +150,7 @@ function userAuth(req, res, next) {
               email:     user.email,
               zip:       user.zip,
               height:    user.height,
+              picture:   user.picture,
               represent: user.represent,
             }, superSecret, {
               expiresInMinutes: 43200 // expires in 30 days
