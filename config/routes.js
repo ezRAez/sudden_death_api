@@ -31,7 +31,7 @@ router.delete('/api/users/:user_id', usersController.tokenVerify, usersControlle
 //||||||||||||||||||||||||||--
 router.get('/api/spots',                                          spotsController.spotIndex);
 router.get('/api/spots/:spot_id',    usersController.tokenVerify, spotsController.spotShow);
-router.get('/api/spotsWithin',                                    spotsController.spotsWithin);
+router.get('/api/spots-within',                                   spotsController.spotsWithin);
 router.post('/api/spots',                                         spotsController.spotCreate);
 router.put('/api/spots/:spot_id',    usersController.tokenVerify, spotsController.spotUpdate);
 router.delete('/api/spots/:spot_id', usersController.tokenVerify, spotsController.spotDelete);
