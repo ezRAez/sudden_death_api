@@ -80,22 +80,22 @@ function userUpdate(req, res) {
         if (err) res.send(err);
 
         // set the new user information if it exists in the request
-        if (req.body.name)            user.name            = req.body.name;
-        if (req.body.userName)        user.userName        = req.body.userName;
-        if (req.body.password)        user.password        = req.body.password;
-        if (req.body.email)           user.email           = req.body.email;
-        if (req.body.zip)             user.zip             = req.body.zip;
-        if (req.body.height)          user.height          = req.body.height;
-        if (req.body.represent)       user.represent       = req.body.represent;
-        if (req.body.picture)         user.picture         = req.body.picture;
-        if (req.body.respect)         user.respect         = req.body.respect;
-        if (req.body.wins)            user.wins            = req.body.wins;
-        if (req.body.losses)          user.losses          = req.body.losses;
-        if (req.body.forfeits)        user.forfeits        = req.body.forfeits;
-        if (req.body.outsideO)        user.outsideO        = req.body.outsideO;
-        if (req.body.insideO)         user.insideO         = req.body.insideO;
-        if (req.body.defense)         user.defense         = req.body.defense;
-        if (req.body.sportsmanship)   user.sportsmanship   = req.body.sportsmanship;
+        if (req.body.name)          user.name          = req.body.name;
+        if (req.body.userName)      user.userName      = req.body.userName;
+        if (req.body.password)      user.password      = req.body.password;
+        if (req.body.email)         user.email         = req.body.email;
+        if (req.body.zip)           user.zip           = req.body.zip;
+        if (req.body.height)        user.height        = req.body.height;
+        if (req.body.represent)     user.represent     = req.body.represent;
+        if (req.body.picture)       user.picture       = req.body.picture;
+        if (req.body.respect)       user.respect       = req.body.respect;
+        if (req.body.wins)          user.wins          = req.body.wins;
+        if (req.body.losses)        user.losses        = req.body.losses;
+        if (req.body.forfeits)      user.forfeits      = req.body.forfeits;
+        if (req.body.outsideO)      user.outsideO      = req.body.outsideO;
+        if (req.body.insideO)       user.insideO       = req.body.insideO;
+        if (req.body.defense)       user.defense       = req.body.defense;
+        if (req.body.sportsmanship) user.sportsmanship = req.body.sportsmanship;
 
         // save the user
         user.save(function(err) {
@@ -127,7 +127,7 @@ function userAuth(req, res, next) {
   // find the user
   User.findOne({
       userName: req.body.userName
-    }).select('_id userName picture respect wins losses forfeits outsideO insideO defense sportsmanship name email zip height represent')
+    }).select('_id userName name email zip height represent picture respect wins losses forfeits outsideO insideO defense sportsmanship')
       .exec(function(err, user) {
 
       if (err) throw err;
@@ -167,7 +167,7 @@ function userAuth(req, res, next) {
               outsideO:       user.outsideO,
               insideO:        user.insideO,
               defense:        user.defense,
-              sportsmanship:  user.sportsmanship,
+              sportsmanship:  user.sportsmanship
             }, superSecret, {
               expiresIn:      2592000 // expires in 30 days
             });
