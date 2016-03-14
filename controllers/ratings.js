@@ -1,3 +1,5 @@
+// STILL NEEDS WORK!! ONLY PUSHED TO GET STARTED!
+
 // Require resource's model(s).
 var Rating        = require("../models/rating");
 
@@ -6,12 +8,11 @@ var ratingsController = {
   ratingShow:    ratingShow,
   ratingCreate:  ratingCreate,
   ratingUpdate:  ratingUpdate,
-  ratingDelete:  ratingDelete,
-  ratingsWithin: ratingsWithin,
+  ratingDelete:  ratingDelete
 };
 
 //||||||||||||||||||||||||||--
-// GET ratingS - rating INDEX
+// GET RATINGS - RATINGS INDEX
 //||||||||||||||||||||||||||--
 function ratingIndex(req, res) {
   Rating.find({}, function(err, ratings) {
@@ -23,7 +24,7 @@ function ratingIndex(req, res) {
 }
 
 //||||||||||||||||||||||||||--
-// GET rating - rating SHOW
+// GET RATING - RATING SHOW
 //||||||||||||||||||||||||||--
 function ratingShow(req, res) {
   Rating.findById(req.params.rating_id, function(err, rating) {
@@ -35,11 +36,11 @@ function ratingShow(req, res) {
 };
 
 //||||||||||||||||||||||||||--
-// CREATE rating
+// CREATE RATING
 //||||||||||||||||||||||||||--
 function ratingCreate(req, res) {
     var rating   = new Rating(req.body);
-    rating.rated = req.params.rated_id;
+    // rating.rated = req.params.rated_id;
 
     rating.save(function(err) {
         if (err) {
@@ -53,7 +54,7 @@ function ratingCreate(req, res) {
 };
 
 //||||||||||||||||||||||||||--
-// UPDATE rating
+// UPDATE RATING
 //||||||||||||||||||||||||||--
 function ratingUpdate(req, res) {
   Rating.findById(req.params.rating_id, function(err, rating) {
@@ -78,7 +79,7 @@ function ratingUpdate(req, res) {
 }
 
 //||||||||||||||||||||||||||--
-// DELETE rating
+// DELETE RATING
 //||||||||||||||||||||||||||--
 function ratingDelete(req, res) {
   Rating.remove({
