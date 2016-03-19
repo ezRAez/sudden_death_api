@@ -31,7 +31,7 @@ var GameSchema = new mongoose.Schema({
                 type:     mongoose.Schema.Types.ObjectId,
                 ref:      'User'
              },
-  location:  {
+  spot:      {
                 type:     mongoose.Schema.Types.ObjectId,
                 ref:      'Spot'
              },

@@ -1,5 +1,3 @@
-// STILL NEEDS WORK!! ONLY PUSHED TO GET STARTED!
-
 // Require resource's model(s).
 var Game = require("../models/game"),
     User = require("../models/user");

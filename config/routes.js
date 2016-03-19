@@ -20,7 +20,7 @@ router.post('/login',            usersController.userAuth);
 router.get('/me',                usersController.tokenVerify, usersController.decodeToken);
 
 //||||||||||||||||||||||||||--
-// USERS ROUTES
+// USER ROUTES
 //||||||||||||||||||||||||||--
 router.get('/users',                                          usersController.userIndex);
 router.get('/users/:user_id',    usersController.tokenVerify, usersController.userShow);
@@ -39,7 +39,16 @@ router.put('/spots/:spot_id',    usersController.tokenVerify, spotsController.sp
 router.delete('/spots/:spot_id', usersController.tokenVerify, spotsController.spotDelete);
 
 //||||||||||||||||||||||||||--
-// RATINGS ROUTES
+// RATING ROUTES
+//||||||||||||||||||||||||||--
+router.get('/users/:user_id/games',             usersController.tokenVerify, gamesController.index);
+router.get('/users/:user_id/games/:game_id',    usersController.tokenVerify, gamesController.show);
+router.post('/users/:user_id/games/',           usersController.tokenVerify, gamesController.create);
+router.put('/users/:user_id/games/:game_id',    usersController.tokenVerify, gamesController.update);
+router.delete('/users/:user_id/games/:game_id', usersController.tokenVerify, gamesController.destroy);
+
+//||||||||||||||||||||||||||--
+// RATING ROUTES
 //||||||||||||||||||||||||||--
 router.get('/users/:user_id/games/:game_id/ratings',              usersController.tokenVerify, ratingsController.index);
 router.get('/users/:user_id/games/:game_id/ratings/:rating_id',   usersController.tokenVerify, ratingsController.show);
