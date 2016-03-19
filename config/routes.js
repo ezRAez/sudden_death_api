@@ -4,6 +4,7 @@ var express = require('express'),
 // Require controllers.
 var usersController   = require('../controllers/users');
 var spotsController   = require('../controllers/spots');
+var gamesController   = require('../controllers/games');
 var ratingsController   = require('../controllers/ratings');
 
 router.get('/', function(req, res, next) {
@@ -13,37 +14,37 @@ router.get('/', function(req, res, next) {
 //||||||||||||||||||||||||||--
 // AUTHENTICATION ROUTE
 //||||||||||||||||||||||||||--
-router.post('/api/login',            usersController.userAuth);
+router.post('/login',            usersController.userAuth);
 
 // Get info about currently logged in user
-router.get('/api/me',                usersController.tokenVerify, usersController.decodeToken);
+router.get('/me',                usersController.tokenVerify, usersController.decodeToken);
 
 //||||||||||||||||||||||||||--
 // USERS ROUTES
 //||||||||||||||||||||||||||--
-router.get('/api/users',                                          usersController.userIndex);
-router.get('/api/users/:user_id',    usersController.tokenVerify, usersController.userShow);
-router.post('/api/users',                                         usersController.userCreate);
-router.put('/api/users/:user_id',    usersController.tokenVerify, usersController.userUpdate);
-router.delete('/api/users/:user_id', usersController.tokenVerify, usersController.userDelete);
+router.get('/users',                                          usersController.userIndex);
+router.get('/users/:user_id',    usersController.tokenVerify, usersController.userShow);
+router.post('/users',                                         usersController.userCreate);
+router.put('/users/:user_id',    usersController.tokenVerify, usersController.userUpdate);
+router.delete('/users/:user_id', usersController.tokenVerify, usersController.userDelete);
 
 //||||||||||||||||||||||||||--
 // SPOT ROUTES
 //||||||||||||||||||||||||||--
-router.get('/api/spots',                                          spotsController.spotIndex);
-router.get('/api/spots/:spot_id',    usersController.tokenVerify, spotsController.spotShow);
-router.get('/api/spots-within',                                   spotsController.spotsWithin);
-router.post('/api/spots',                                         spotsController.spotCreate);
-router.put('/api/spots/:spot_id',    usersController.tokenVerify, spotsController.spotUpdate);
-router.delete('/api/spots/:spot_id', usersController.tokenVerify, spotsController.spotDelete);
+router.get('/spots',                                          spotsController.spotIndex);
+router.get('/spots/:spot_id',    usersController.tokenVerify, spotsController.spotShow);
+router.get('/spots-within',                                   spotsController.spotsWithin);
+router.post('/spots',                                         spotsController.spotCreate);
+router.put('/spots/:spot_id',    usersController.tokenVerify, spotsController.spotUpdate);
+router.delete('/spots/:spot_id', usersController.tokenVerify, spotsController.spotDelete);
 
 //||||||||||||||||||||||||||--
 // RATINGS ROUTES
 //||||||||||||||||||||||||||--
-router.get('/api/ratings',                                            ratingsController.ratingIndex);
-router.get('/api/ratings/:rating_id',    usersController.tokenVerify, ratingsController.ratingShow);
-router.post('/api/ratings',                                           ratingsController.ratingCreate);
-router.put('/api/ratings/:rating_id',    usersController.tokenVerify, ratingsController.ratingUpdate);
-router.delete('/api/ratings/:rating_id', usersController.tokenVerify, ratingsController.ratingDelete);
+router.get('/users/:user_id/games/:game_id/ratings',              usersController.tokenVerify, ratingsController.index);
+router.get('/users/:user_id/games/:game_id/ratings/:rating_id',   usersController.tokenVerify, ratingsController.show);
+router.post('/users/:user_id/games/:game_id/ratings',             usersController.tokenVerify, ratingsController.create);
+router.put('/users/:user_id/games/:game_id/ratings/rating_id',    usersController.tokenVerify, ratingsController.update);
+router.delete('/users/:user_id/games/:game_id/ratings/rating_id', usersController.tokenVerify, ratingsController.destroy);
 
 module.exports = router;
