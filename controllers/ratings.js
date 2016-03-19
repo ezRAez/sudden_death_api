@@ -5,11 +5,12 @@ var Game = require("../models/game"),
     User = require("../models/user");
 
 var ratingsController = {
-  index:      index,
-  showRating: showRating,
-  create:     create,
-  update:     update,
-  delete:     delete
+  index:       index,
+  showRatings: showRatings,
+  showRating:  showRating,
+  create:      create,
+  update:      update,
+  delete:      delete
 };
 
 //|||||||||||||||||||||||||||||||--
@@ -32,69 +33,83 @@ function index(req, res) {
 // GET RATING - SHOW RATINGS OF A GAME
 //||||||||||||||||||||||||||--
 function showRatings(req, res) {
-  Rating.findById(req.params.rating_id, function(err, rating) {
-        if (err) res.send(err);
+  Game.findById(req.params.game_id, function(err, game) {
+    if (err) res.send(err);
 
-        // return that rating
-        res.json(rating);
+    // return that rating
+    res.json([game.p1rating[0], game.p2rating[0]]);
+  });
+};
+
+//||||||||||||||||||||||||||--
+// GET RATING - SHOW RATING
+//||||||||||||||||||||||||||--
+function showRating(req, res) {
+  Game.findById(req.params.game_id, function(err, game) {
+    if (err) res.send(err);
+    var rating;
+    if (game.p1rating[0]._id === req.params.rating_id) rating = game.p1rating[0];
+    if (game.p2rating[0]._id === req.params.rating_id) rating = game.p1rating[0];
+    // return that rating
+    res.json(rating);
   });
 };
 
 //||||||||||||||||||||||||||--
 // CREATE RATING
 //||||||||||||||||||||||||||--
-function ratingCreate(req, res) {
-    var rating   = new Rating(req.body);
-    // rating.rated = req.params.rated_id;
-
-    rating.save(function(err) {
-        if (err) {
-            return res.json(err);
-        }
-
-        // return a message
-        res.json({ message: "Rating created." });
-      });
-
-};
+// function ratingCreate(req, res) {
+//     var rating   = new Rating(req.body);
+//     // rating.rated = req.params.rated_id;
+//
+//     rating.save(function(err) {
+//         if (err) {
+//             return res.json(err);
+//         }
+//
+//         // return a message
+//         res.json({ message: "Rating created." });
+//       });
+//
+// };
 
 //||||||||||||||||||||||||||--
 // UPDATE RATING
 //||||||||||||||||||||||||||--
-function ratingUpdate(req, res) {
-  Rating.findById(req.params.rating_id, function(err, rating) {
-
-        if (err) res.send(err);
-
-        // set the new rating information if it exists in the request
-        if (req.body.insideO)       rating.insideO       = req.body.insideO;
-        if (req.body.outsideO)      rating.outsideO      = req.body.outsideO;
-        if (req.body.defense)       rating.defense       = req.body.defense;
-        if (req.body.sportsmanship) rating.sportsmanship = req.body.sportsmanship;
-        if (req.body.comment)       rating.comment       = req.body.comment;
-
-        // save the rating
-        rating.save(function(err) {
-          if (err) res.send(err);
-
-          // return a message
-          res.json({ message: 'Rating updated!' });
-        });
-  });
-}
+// function ratingUpdate(req, res) {
+//   Rating.findById(req.params.rating_id, function(err, rating) {
+//
+//         if (err) res.send(err);
+//
+//         // set the new rating information if it exists in the request
+//         if (req.body.insideO)       rating.insideO       = req.body.insideO;
+//         if (req.body.outsideO)      rating.outsideO      = req.body.outsideO;
+//         if (req.body.defense)       rating.defense       = req.body.defense;
+//         if (req.body.sportsmanship) rating.sportsmanship = req.body.sportsmanship;
+//         if (req.body.comment)       rating.comment       = req.body.comment;
+//
+//         // save the rating
+//         rating.save(function(err) {
+//           if (err) res.send(err);
+//
+//           // return a message
+//           res.json({ message: 'Rating updated!' });
+//         });
+//   });
+// }
 
 //||||||||||||||||||||||||||--
 // DELETE RATING
 //||||||||||||||||||||||||||--
-function ratingDelete(req, res) {
-  Rating.remove({
-        _id: req.params.rating_id
-      }, function(err, rating) {
-        if (err) res.send(err);
-
-        res.json({ message: 'Rating deleted' });
-  });
-}
+// function ratingDelete(req, res) {
+//   Rating.remove({
+//         _id: req.params.rating_id
+//       }, function(err, rating) {
+//         if (err) res.send(err);
+// 
+//         res.json({ message: 'Rating deleted' });
+//   });
+// }
 
 //||||||||||||||||||||||||||--
 // EXPORT RATINGS CONTROLLER
