@@ -1,32 +1,37 @@
 // STILL NEEDS WORK!! ONLY PUSHED TO GET STARTED!
 
 // Require resource's model(s).
-var Rating        = require("../models/rating");
+var Game = require("../models/game"),
+    User = require("../models/user");
 
 var ratingsController = {
-  ratingIndex:   ratingIndex,
-  ratingShow:    ratingShow,
-  ratingCreate:  ratingCreate,
-  ratingUpdate:  ratingUpdate,
-  ratingDelete:  ratingDelete
+  index:      index,
+  showRating: showRating,
+  create:     create,
+  update:     update,
+  delete:     delete
 };
 
-//||||||||||||||||||||||||||--
-// GET RATINGS - RATINGS INDEX
-//||||||||||||||||||||||||||--
-function ratingIndex(req, res) {
-  Rating.find({}, function(err, ratings) {
-        if (err) res.send(err);
+//|||||||||||||||||||||||||||||||--
+// GET RATINGS - RATINGS INDEX FOR USER
+//|||||||||||||||||||||||||||||||--
+function index(req, res) {
+  var id = req.params.user_id;
+  Game.find({ player1: id, player2: id }, function(err, games) {
+    if (err) res.send(err);
 
-        // return the ratings
-        res.json(ratings);
+    var ratings = [];
+    games.forEach(function(game) {
+      game.player1 === id ? ratings.push(game.p1rating[0]) : ratings.push(game.p2rating[0]);
+    })
+    res.json(ratings);
   });
 }
 
 //||||||||||||||||||||||||||--
-// GET RATING - RATING SHOW
+// GET RATING - SHOW RATINGS OF A GAME
 //||||||||||||||||||||||||||--
-function ratingShow(req, res) {
+function showRatings(req, res) {
   Rating.findById(req.params.rating_id, function(err, rating) {
         if (err) res.send(err);
 
