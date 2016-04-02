@@ -39,21 +39,21 @@ router.put('/spots/:spot_id',    usersController.tokenVerify, spotsController.sp
 router.delete('/spots/:spot_id', usersController.tokenVerify, spotsController.spotDelete);
 
 //||||||||||||||||||||||||||--
-// RATING ROUTES
+// GAME ROUTES
 //||||||||||||||||||||||||||--
-router.get('/users/:user_id/games',             usersController.tokenVerify, gamesController.index);
-router.get('/users/:user_id/games/:game_id',    usersController.tokenVerify, gamesController.show);
-router.post('/users/:user_id/games/',           usersController.tokenVerify, gamesController.create);
-router.put('/users/:user_id/games/:game_id',    usersController.tokenVerify, gamesController.update);
-router.delete('/users/:user_id/games/:game_id', usersController.tokenVerify, gamesController.destroy);
+router.get('/users/:user_id/games',             gamesController.index);
+router.get('/users/:user_id/games/:game_id',    gamesController.show);
+router.post('/users/:user_id/games',           gamesController.create);
+router.put('/users/:user_id/games/:game_id',    gamesController.update);
+router.delete('/users/:user_id/games/:game_id', gamesController.destroy);
 
 //||||||||||||||||||||||||||--
 // RATING ROUTES
 //||||||||||||||||||||||||||--
-router.get('/users/:user_id/games/:game_id/ratings',              usersController.tokenVerify, ratingsController.index);
-router.get('/users/:user_id/games/:game_id/ratings/:rating_id',   usersController.tokenVerify, ratingsController.show);
-router.post('/users/:user_id/games/:game_id/ratings',             usersController.tokenVerify, ratingsController.create);
-router.put('/users/:user_id/games/:game_id/ratings/rating_id',    usersController.tokenVerify, ratingsController.update);
-router.delete('/users/:user_id/games/:game_id/ratings/rating_id', usersController.tokenVerify, ratingsController.destroy);
+router.get('/users/:user_id/games/:game_id/ratings',              ratingsController.index);
+router.get('/users/:user_id/games/:game_id/ratings/:rating_id',   ratingsController.show);
+router.post('/users/:user_id/games/:game_id/ratings',             ratingsController.create);
+router.put('/users/:user_id/games/:game_id/ratings/rating_id',    ratingsController.update);
+router.delete('/users/:user_id/games/:game_id/ratings/rating_id', ratingsController.destroy);
 
 module.exports = router;

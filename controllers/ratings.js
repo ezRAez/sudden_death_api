@@ -21,23 +21,15 @@ function index(req, res) {
     var id = req.params.user_id;
     var ratings = [];
     games.forEach(function(game) {
-      game.player1 === id ? ratings.push(game.p1rating[0]) : ratings.push(game.p2rating[0]);
+      if (game.player1 === id) {
+        ratings.push(game.p1rating[0]);
+      } else if (game.player2 === id) {
+        ratings.push(game.p2rating[0])
+      }
     })
     res.json(ratings);
   });
-}
-
-//||||||||||||||||||||||||||--
-// GET RATING - SHOW RATINGS OF A GAME
-//||||||||||||||||||||||||||--
-// function gameRatings(req, res) {
-//   Game.findById(req.params.game_id, function(err, game) {
-//     if (err) res.send(err);
-//
-//     // return that rating
-//     res.json([game.p1rating[0], game.p2rating[0]]);
-//   });
-// };
+};
 
 //||||||||||||||||||||||||||--
 // GET RATING - SHOW RATING

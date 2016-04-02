@@ -23,7 +23,8 @@ function index(req, res) {
     var matches = [];
 
     games.forEach(function(game) {
-      if (game.player1 === req.params.user_id || game.player2 === req.params.user_id) matches.push(game);
+      var p1Id = game.player1.toString(), p2Id = game.player2.toString();
+      if (p1Id === req.params.user_id || p2Id === req.params.user_id) matches.push(game);
     });
     res.json(matches);
   });
@@ -47,7 +48,7 @@ function show(req, res) {
 function create(req, res) {
   var game = new Game({
     player1:  req.params.user_id,
-    player2:  req.body.opp_id,
+    player2:  req.body.player2,
     status:   req.body.status
   });
 
@@ -83,6 +84,5 @@ function destroy(req, res) {
   Game.remove({ _id: req.params.game_id }, function(err, game) {
     if (err) res.send(err);
     res.json({ msg: "Game deleted.", game: game });
-    });
   });
 }
