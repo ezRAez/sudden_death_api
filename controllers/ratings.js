@@ -21,9 +21,9 @@ function index(req, res) {
     var id = req.params.user_id;
     var ratings = [];
     games.forEach(function(game) {
-      if (game.player1 === id) {
+      if (game.player1.toString() === id) {
         ratings.push(game.p1rating[0]);
-      } else if (game.player2 === id) {
+      } else if (game.player2.toString() === id) {
         ratings.push(game.p2rating[0])
       }
     })
@@ -38,8 +38,8 @@ function show(req, res) {
   Game.findById(req.params.game_id, function(err, game) {
     if (err) res.send(err);
     var rating;
-    if (game.p1rating[0]._id === req.params.rating_id) rating = game.p1rating[0];
-    if (game.p2rating[0]._id === req.params.rating_id) rating = game.p2rating[0];
+    if (game.p1rating[0]._id.toString() === req.params.rating_id) rating = game.p1rating[0];
+    if (game.p2rating[0]._id.toString() === req.params.rating_id) rating = game.p2rating[0];
     // return that rating
     res.json(rating);
   });
@@ -58,12 +58,14 @@ function create(req, res) {
       comment:       req.body.comment
     };
 
-    if (req.params.user_id === game.player1) {
-      Game.p2rating.push(rating).save(function(err, game) {
+    if (req.params.user_id === game.player1.toString()) {
+      game.p2rating.push(rating);
+      game.save(function(err, game) {
         res.json({ message: "Rating created.", game: game });
       });
-    } else if (req.params.user_id === game.player2) {
-      Game.p1rating.push(rating).save(function(err, game) {
+    } else if (req.params.user_id === game.player2.toString()) {
+      game.p1rating.push(rating);
+      game.save(function(err, game) {
         res.json({ message: "Rating created.", game: game });
       });
     }
@@ -78,18 +80,18 @@ function update(req, res) {
 
     if (err) res.send(err);
 
-    if (game.p1rating[0]._id === req.params.rating_id) {
-      if (req.body.insideO)       game.p1rating[0].insideO       = req.body.insideO;
-      if (req.body.outsideO)      game.p1rating[0].outsideO      = req.body.outsideO;
-      if (req.body.defense)       game.p1rating[0].defense       = req.body.defense;
-      if (req.body.sportsmanship) game.p1rating[0].sportsmanship = req.body.sportsmanship;
-      if (req.body.comment)       game.p1rating[0].comment       = req.body.comment;
-    } else if (game.p2rating[0]._id === req.params.rating_id) {
-      if (req.body.insideO)       game.p2rating[0].insideO       = req.body.insideO;
-      if (req.body.outsideO)      game.p2rating[0].outsideO      = req.body.outsideO;
-      if (req.body.defense)       game.p2rating[0].defense       = req.body.defense;
-      if (req.body.sportsmanship) game.p2rating[0].sportsmanship = req.body.sportsmanship;
-      if (req.body.comment)       game.p2rating[0].comment       = req.body.comment;
+    if (game.p1rating[0]._id.toString() === req.params.rating_id) {
+      if (req.body.insideO !== undefined)       game.p1rating[0].insideO       = req.body.insideO;
+      if (req.body.outsideO !== undefined)      game.p1rating[0].outsideO      = req.body.outsideO;
+      if (req.body.defense !== undefined)       game.p1rating[0].defense       = req.body.defense;
+      if (req.body.sportsmanship !== undefined) game.p1rating[0].sportsmanship = req.body.sportsmanship;
+      if (req.body.comment)                     game.p1rating[0].comment       = req.body.comment;
+    } else if (game.p2rating[0]._id.toString() === req.params.rating_id) {
+      if (req.body.insideO !== undefined)       game.p2rating[0].insideO       = req.body.insideO;
+      if (req.body.outsideO !== undefined)      game.p2rating[0].outsideO      = req.body.outsideO;
+      if (req.body.defense !== undefined)       game.p2rating[0].defense       = req.body.defense;
+      if (req.body.sportsmanship !== undefined) game.p2rating[0].sportsmanship = req.body.sportsmanship;
+      if (req.body.comment)                     game.p2rating[0].comment       = req.body.comment;
     }
 
     // save the rating
@@ -108,13 +110,38 @@ function update(req, res) {
 function destroy(req, res) {
   Game.findById(req.params.game_id, function(err, game) {
     if (err) res.send(err);
+    var par = req.params;
+    var sendReq = true;
+    var notFound = true;
 
-    game.p1rating.pull(req.params.rating_id) || game.p2rating.pull(req.params.rating_id);
-    game.save(function(err, game) {
-      if (err) res.send(err);
 
-      res.json({ msg: "Rating deleted.", game: game });
-    });
+    if (game.player2.toString() === par.user_id) {
+      if (game.p1rating[0] && par.rating_id === game.p1rating[0]._id.toString()) {
+        game.p1rating.pull(par.rating_id);
+        notFound = false;
+      } else {
+        sendReq = false, notFound = false;
+        res.json({ msg: "You can't delete your own Rating!", game: game} );
+      }
+    } else if (game.player1.toString() === par.user_id) {
+       if (game.p2rating[0] && par.rating_id === game.p2rating[0]._id.toString()) {
+        game.p2rating.pull(par.rating_id);
+        notFound = false;
+      } else {
+        sendReq = false, notFound = false;
+        res.json({ msg: "You can't delete your own Rating!", game: game} );
+      }
+    }
+
+    if (notFound) {
+      res.json({ msg: "No such rating." });
+    } else if (sendReq) {
+      game.save(function(err, game) {
+        if (err) res.send(err);
+
+        res.json({ msg: "Rating deleted.", game: game });
+      });
+    }
   });
 }
 

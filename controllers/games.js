@@ -28,7 +28,7 @@ function index(req, res) {
     });
     res.json(matches);
   });
-}
+};
 
 //||||||||||||||||||||||||||--
 // GET GAME - SHOW GAME
@@ -56,7 +56,7 @@ function create(req, res) {
     if (err) res.send(err);
 
     res.json({msg: "game created", game: game });
-  })
+  });
 };
 
 //||||||||||||||||||||||||||--
@@ -75,7 +75,7 @@ function update(req, res) {
       res.json({ msg: "updated game", game: game });
     });
   });
-}
+};
 
 //||||||||||||||||||||||||||--
 // DELETE GAME
@@ -85,4 +85,4 @@ function destroy(req, res) {
     if (err) res.send(err);
     res.json({ msg: "Game deleted.", game: game });
   });
-}
+};
