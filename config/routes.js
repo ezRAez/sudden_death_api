@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 router.post('/login', usersController.userAuth);
 
 // Get info about currently logged in user
-router.get('/me',     usersController.decodeToken);
+router.get('/me',     usersController.tokenVerify, usersController.decodeToken);
 
 //||||||||||||||||||||||||||--
 // USER ROUTES
