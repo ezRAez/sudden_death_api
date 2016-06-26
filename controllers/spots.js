@@ -11,7 +11,7 @@ var spotsController = {
 };
 
 //||||||||||||||||||||||||||--
-// GET spotS - spot INDEX
+// GET SPOTS - SPOT INDEX
 //||||||||||||||||||||||||||--
 function spotIndex(req, res) {
   Spot.find({}, function(err, spots) {
@@ -23,7 +23,7 @@ function spotIndex(req, res) {
 }
 
 //||||||||||||||||||||||||||--
-// GET spot - spot SHOW
+// GET SPOT - SPOT SHOW
 //||||||||||||||||||||||||||--
 function spotShow(req, res) {
   Spot.findById(req.params.spot_id, function(err, spot) {
@@ -35,7 +35,7 @@ function spotShow(req, res) {
 };
 
 //||||||||||||||||||||||||||--
-// CREATE spot
+// CREATE SPOT
 //||||||||||||||||||||||||||--
 function spotCreate(req, res) {
     var spot          = new Spot();
@@ -56,7 +56,7 @@ function spotCreate(req, res) {
 };
 
 //||||||||||||||||||||||||||--
-// UPDATE spot
+// UPDATE SPOT
 //||||||||||||||||||||||||||--
 function spotUpdate(req, res) {
   Spot.findById(req.params.spot_id, function(err, spot) {
@@ -82,7 +82,7 @@ function spotUpdate(req, res) {
 }
 
 //||||||||||||||||||||||||||--
-// DELETE spot
+// DELETE SPOT
 //||||||||||||||||||||||||||--
 function spotDelete(req, res) {
   Spot.remove({
@@ -95,7 +95,7 @@ function spotDelete(req, res) {
 }
 
 //||||||||||||||||||||||||||--
-// FIND spot WITHIN
+// FIND SPOT WITHIN
 //||||||||||||||||||||||||||--
 function spotsWithin(req, res) {
 
@@ -128,6 +128,6 @@ function spotsWithin(req, res) {
 }
 
 //||||||||||||||||||||||||||--
-// EXPORT spotS CONTROLLER
+// EXPORT SPOTS CONTROLLER
 //||||||||||||||||||||||||||--
 module.exports = spotsController;
