@@ -77,7 +77,7 @@ function userCreate(req, res) {
 function userUpdate(req, res) {
   User.findById(req.params.user_id, function(err, user) {
 
-        if (err) res.send(err);
+        if (err) res.json(err);
 
         // set the new user information if it exists in the request
         if (req.body.name)          user.name          = req.body.name;
@@ -99,7 +99,7 @@ function userUpdate(req, res) {
 
         // save the user
         user.save(function(err) {
-          if (err) res.send(err);
+          if (err) res.json(err);
 
           // return a message
           res.json({ message: 'User updated!' });
