@@ -176,7 +176,8 @@ function userAuth(req, res, next) {
             res.json({
               success: true,
               message: 'Enjoy your token!',
-              token: token
+              token: token,
+              user: user
             });
           }
 
