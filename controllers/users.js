@@ -98,11 +98,11 @@ function userUpdate(req, res) {
     if (req.body.sportsmanship) user.sportsmanship = req.body.sportsmanship;
 
     // save the user
-    user.save(function(err) {
+    user.save(function(err, user) {
       if (err) res.json(err);
 
       // return a message
-      res.json({ message: 'User updated!' });
+      res.json({ message: 'User updated!', user });
     });
   });
 }
