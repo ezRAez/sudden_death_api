@@ -50,6 +50,7 @@ function userCreate(req, res) {
     user.password     = req.body.password;
     user.email        = req.body.email;
     user.sex          = req.body.sex;
+    user.opponentPref = req.body.opponentPref;
     user.zip          = req.body.zip;
     user.height       = req.body.height;
     user.represent    = req.body.represent;
@@ -87,6 +88,7 @@ function userUpdate(req, res) {
     if (req.body.email)         user.email         = req.body.email;
     if (req.body.zip)           user.zip           = req.body.zip;
     if (req.body.sex)           user.sex           = req.body.sex;
+    if (req.body.opponentPref)  user.opponentPref  = req.body.opponentPref;
     if (req.body.height)        user.height        = req.body.height;
     if (req.body.represent)     user.represent     = req.body.represent;
     if (req.body.picture)       user.picture       = req.body.picture;
@@ -110,6 +112,7 @@ function userUpdate(req, res) {
               email:          user.email,
               zip:            user.zip,
               sex:            user.sex,
+              opponentPref:   user.opponentPref,
               height:         user.height,
               represent:      user.represent,
               picture:        user.picture,
@@ -187,6 +190,7 @@ function userAuth(req, res, next) {
               email:          user.email,
               zip:            user.zip,
               sex:            user.sex,
+              opponentPref:   user.opponentPref,
               height:         user.height,
               represent:      user.represent,
               picture:        user.picture,
