@@ -1,19 +1,12 @@
 // Require resource's model(s).
-var Spot        = require("../models/spot");
+var Spot = require("../models/spot");
 
-var spotsController = {
-  spotIndex:   spotIndex,
-  spotShow:    spotShow,
-  spotCreate:  spotCreate,
-  spotUpdate:  spotUpdate,
-  spotDelete:  spotDelete,
-  spotsWithin: spotsWithin,
-};
+var spotsController = { index, show, create, update, destroy, spotsWithin };
 
 //||||||||||||||||||||||||||--
 // GET SPOTS - SPOT INDEX
 //||||||||||||||||||||||||||--
-function spotIndex(req, res) {
+function index(req, res) {
   Spot.find({}, function(err, spots) {
         if (err) res.send(err);
 
@@ -25,7 +18,7 @@ function spotIndex(req, res) {
 //||||||||||||||||||||||||||--
 // GET SPOT - SPOT SHOW
 //||||||||||||||||||||||||||--
-function spotShow(req, res) {
+function show(req, res) {
   Spot.findById(req.params.spot_id, function(err, spot) {
         if (err) res.send(err);
 
@@ -37,7 +30,7 @@ function spotShow(req, res) {
 //||||||||||||||||||||||||||--
 // CREATE SPOT
 //||||||||||||||||||||||||||--
-function spotCreate(req, res) {
+function create(req, res) {
     var spot          = new Spot();
     spot.name         = req.body.name;
     spot.latlong      = [req.body.latitude, req.body.longitude];
@@ -58,7 +51,7 @@ function spotCreate(req, res) {
 //||||||||||||||||||||||||||--
 // UPDATE SPOT
 //||||||||||||||||||||||||||--
-function spotUpdate(req, res) {
+function update(req, res) {
   Spot.findById(req.params.spot_id, function(err, spot) {
 
         if (err) res.send(err);
@@ -84,7 +77,7 @@ function spotUpdate(req, res) {
 //||||||||||||||||||||||||||--
 // DELETE SPOT
 //||||||||||||||||||||||||||--
-function spotDelete(req, res) {
+function destroy(req, res) {
   Spot.remove({
         _id: req.params.spot_id
       }, function(err, spot) {
@@ -115,7 +108,7 @@ function spotsWithin(req, res) {
   query.exec(function (err, spots) {
     if (err) {
       console.log(err);
-      res.send(err);
+      res.json(err);
     }
     if (!spots) {
       res.json({'msg': 'No Spots found.'});

@@ -5,18 +5,24 @@ var Game = require("../models/game"),
 //||||||||||||||||||||||||||--
 // EXPORT GAMES CONTROLLER
 //||||||||||||||||||||||||||--
-module.exports = {
-  index:   index,
-  show:    show,
-  create:  create,
-  update:  update,
-  destroy: destroy
-};
+module.exports = { index, userIndex, show, create, update, destroy };
 
 //|||||||||||||||||||||||||||||||--
 // GET GAMES - GAMES INDEX FOR USER
 //|||||||||||||||||||||||||||||||--
 function index(req, res) {
+  Game.find({}, function(err, games) {
+
+    if (err) res.send(err);
+
+    res.json({ success: true, games});
+  });
+};
+
+//|||||||||||||||||||||||||||||||--
+// GET GAMES - GAMES INDEX FOR USER
+//|||||||||||||||||||||||||||||||--
+function userIndex(req, res) {
   Game.find({}, function(err, games) {
 
     if (err) res.send(err);
@@ -26,7 +32,7 @@ function index(req, res) {
       var p1Id = game.player1.toString(), p2Id = game.player2.toString();
       if (p1Id === req.params.user_id || p2Id === req.params.user_id) matches.push(game);
     });
-    res.json(matches);
+    res.json({ success: true, matches});
   });
 };
 
@@ -38,7 +44,7 @@ function show(req, res) {
     if (err) res.send(err);
 
     // return that game
-    res.json(game);
+    res.json({ success: true, game});
   });
 };
 
@@ -55,7 +61,7 @@ function create(req, res) {
   game.save(function(err, game) {
     if (err) res.send(err);
 
-    res.json({msg: "game created", game: game });
+    res.json({ success: true, msg: "game created", game: game });
   });
 };
 
@@ -72,7 +78,7 @@ function update(req, res) {
     game.save(function(err, game) {
       if (err) res.send(err);
 
-      res.json({ msg: "updated game", game: game });
+      res.json({ success: true, msg: "updated game", game: game });
     });
   });
 };
@@ -83,6 +89,6 @@ function update(req, res) {
 function destroy(req, res) {
   Game.remove({ _id: req.params.game_id }, function(err, game) {
     if (err) res.send(err);
-    res.json({ msg: "Game deleted.", game: game });
+    res.json({ success: true, msg: "Game deleted.", game: game });
   });
 };

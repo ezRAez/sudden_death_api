@@ -2,13 +2,10 @@
 var Game = require("../models/game"),
     User = require("../models/user");
 
-var ratingsController = {
-  index:   index,
-  show:    show,
-  create:  create,
-  update:  update,
-  destroy: destroy
-};
+//||||||||||||||||||||||||||--
+// EXPORT RATINGS CONTROLLER
+//||||||||||||||||||||||||||--
+module.exports = { index, show, create, update, destroy };
 
 //|||||||||||||||||||||||||||||||--
 // GET RATINGS - RATINGS INDEX FOR USER
@@ -144,8 +141,3 @@ function destroy(req, res) {
     }
   });
 }
-
-//||||||||||||||||||||||||||--
-// EXPORT RATINGS CONTROLLER
-//||||||||||||||||||||||||||--
-module.exports = ratingsController;
