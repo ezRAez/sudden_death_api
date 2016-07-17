@@ -6,6 +6,7 @@ var usersController   = require('../controllers/users');
 var spotsController   = require('../controllers/spots');
 var gamesController   = require('../controllers/games');
 var ratingsController   = require('../controllers/ratings');
+var ratingsController   = require('../controllers/chats');
 
 router.get('/', function(req, res, next) {
   res.json({msg: "Welcome to the Sudden Death API!"});
@@ -55,5 +56,14 @@ router.get('/users/:user_id/games/:game_id/ratings/:rating_id',    ratingsContro
 router.post('/users/:user_id/games/:game_id/ratings',              ratingsController.create);
 router.put('/users/:user_id/games/:game_id/ratings/:rating_id',    ratingsController.update);
 router.delete('/users/:user_id/games/:game_id/ratings/:rating_id', ratingsController.destroy);
+
+//||||||||||||||||||||||||||--
+// MESSAGES ROUTES
+//||||||||||||||||||||||||||--
+router.get('/users/:user_id/games/:game_id/chats',             chatsController.index);
+router.get('/users/:user_id/games/:game_id/chats/:chat_id',    chatsController.show);
+router.post('/users/:user_id/games/:game_id/chats',            chatsController.create);
+router.put('/users/:user_id/games/:game_id/chats/:chat_id',    chatsController.update);
+router.delete('/users/:user_id/games/:game_id/chats/:chat_id', chatsController.destroy);
 
 module.exports = router;

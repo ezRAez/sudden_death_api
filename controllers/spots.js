@@ -40,7 +40,7 @@ function spotShow(req, res) {
 function spotCreate(req, res) {
     var spot          = new Spot();
     spot.name         = req.body.name;
-    spot.lonlat       = [req.body.longitude, req.body.latitude];
+    spot.latlong      = [req.body.latitude, req.body.longitude];
     spot.address      = req.body.address;
     spot.indoor       = req.body.indoor;
 
@@ -66,7 +66,7 @@ function spotUpdate(req, res) {
         // set the new spot information if it exists in the request
         if (req.body.name)       spot.name      = req.body.name;
         if (req.body.latitude && req.body.longitude) {
-          spot.lonlat = [req.body.longitude, req.body.latitude];
+          spot.latlong = [req.body.latitude, req.body.longitude];
         }
         if (req.body.address)    spot.address   = req.body.address;
         if (req.body.indoor)     spot.indoor    = req.body.indoor;
@@ -103,10 +103,10 @@ function spotsWithin(req, res) {
   var miles = req.query.miles || 10;
   var distance =  miles / 3963.2;
 
-  var query = Spot.find({'lonlat': {
+  var query = Spot.find({'latlong': {
       $near: [
-        req.query.lon,
-        req.query.lat
+        req.query.lat,
+        req.query.lon
       ],
       $maxDistance: distance
       }

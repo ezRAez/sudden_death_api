@@ -23,7 +23,6 @@ function checkLength(str) {
   return str.length > 0 && str.length < 180;
 }
 
-
 var Chat = mongoose.model('Chat', ChatSchema);
 
 module.exports = Chat;

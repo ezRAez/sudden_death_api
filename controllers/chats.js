@@ -13,10 +13,18 @@ module.exports = {
 };
 
 
-function index(req, res) {};
+function index(req, res) {
+  res.json({ message: "Not set up yet!", success: false });
+};
 
-function create(req, res) {};
+function create(req, res) {
+  res.json({ message: "Not set up yet!", success: false });
+};
 
-function update(req, res) {};
+function update(req, res) {
+  res.json({ message: "Not set up yet!", success: false });
+};
 
-function destroy(req, res) {};
+function destroy(req, res) {
+  res.json({ message: "Not set up yet!", success: false });
+};

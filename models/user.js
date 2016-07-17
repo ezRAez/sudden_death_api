@@ -9,6 +9,7 @@ var UserSchema = new mongoose.Schema({
   zip:           { type: String, required: true },
   height:        { type: Number, required: true },
   represent:     { type: String, required: true },
+  sex:           { type: String, required: true },
   picture:       { type: String, required: true },
   respect:       { type: Number, default: 1 },
   wins:          { type: Number, default: 0 },
