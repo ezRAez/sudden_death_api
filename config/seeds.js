@@ -12,7 +12,7 @@ var newUsers = [
     email:        "bob@email.com",
     zip:          "90026",
     sex:          "M",
-    opponentPref: "any",
+    opponentPref: "A",
     height:       72,
     represent:    "I'm a dream dunker",
     picture:      "http://familysporthealth.com/wp-content/uploads/2015/06/dunking-basketball-200x300.jpg"
@@ -24,7 +24,7 @@ var newUsers = [
     email:        "futz@email.com",
     zip:          "90026",
     sex:          "M",
-    opponentPref: "any",
+    opponentPref: "A",
     height:       72,
     represent:    "I'm building a wall around the rim!",
     picture:      "http://farm7.static.flickr.com/6134/6019818254_8401c6b10b.jpg"
@@ -36,7 +36,7 @@ var newUsers = [
     email:        "meow@email.com",
     zip:          "90026",
     sex:          "M",
-    opponentPref: "any",
+    opponentPref: "A",
     height:       72,
     represent:    "I'm a little heavy, but damn can I move.",
     picture:      "https://i.ytimg.com/vi/B1qPRmud8hk/hqdefault.jpg"
@@ -72,7 +72,7 @@ var newUsers = [
     email:        "steph@email.com",
     zip:          "90026",
     sex:          "F",
-    opponentPref: "any",
+    opponentPref: "A",
     height:       65,
     represent:    "Heart is what counts!",
     picture:      "https://s-media-cache-ak0.pinimg.com/236x/b3/9b/d6/b39bd61bc77d8e7d5e7a2765fc1b5768.jpg"
