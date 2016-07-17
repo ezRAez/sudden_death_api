@@ -101,8 +101,34 @@ function userUpdate(req, res) {
     user.save(function(err, user) {
       if (err) res.json(err);
 
+      var token = jwt.sign({
+              _id:            user._id,
+              name:           user.name,
+              userName:       user.userName,
+              email:          user.email,
+              zip:            user.zip,
+              height:         user.height,
+              represent:      user.represent,
+              picture:        user.picture,
+              respect:        user.respect,
+              wins:           user.wins,
+              losses:         user.losses,
+              forfeits:       user.forfeits,
+              outsideO:       user.outsideO,
+              insideO:        user.insideO,
+              defense:        user.defense,
+              sportsmanship:  user.sportsmanship
+            }, superSecret, {
+              expiresIn:      2592000 // expires in 30 days
+            });
+
       // return a message
-      res.json({ message: 'User updated!', user });
+      res.json({
+        success: true,
+        message: 'User updated!',
+        user,
+        token
+      });
     });
   });
 }
