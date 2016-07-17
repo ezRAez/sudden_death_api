@@ -12,6 +12,13 @@ var ratingSchema = new mongoose.Schema({
                                                            characters."] }
 });
 
+var chatSchema = new mongoose.Schema({
+  content:  { type: String, validate: [checkLength, "Messages must be shorter \
+                                                     than 180 characters."] },
+  read:     Boolean,
+  sent:     Date
+});
+
 var GameSchema = new mongoose.Schema({
   player1:   {
                 type:     mongoose.Schema.Types.ObjectId,
@@ -37,6 +44,8 @@ var GameSchema = new mongoose.Schema({
              },
   p1rating:  [ ratingSchema ],
   p2rating:  [ ratingSchema ],
+  p1chats:   [ chatSchema ],
+  p2chats:   [ chatSchema ],
   time:      Date
 });
 

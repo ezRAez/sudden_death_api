@@ -1,6 +1,6 @@
 // Require resource's model(s).
-var Game = require("../models/game"),
-    User = require("../models/user");
+var Game     = require("../models/game"),
+    User     = require("../models/user");
 
 //||||||||||||||||||||||||||--
 // EXPORT CHAT CONTROLLER
@@ -8,7 +8,6 @@ var Game = require("../models/game"),
 module.exports = {
   index:   index,
   create:  create,
-  update:  update,
   destroy: destroy
 };
 
@@ -18,10 +17,6 @@ function index(req, res) {
 };
 
 function create(req, res) {
-  res.json({ message: "Not set up yet!", success: false });
-};
-
-function update(req, res) {
   res.json({ message: "Not set up yet!", success: false });
 };
 
