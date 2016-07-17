@@ -10,6 +10,7 @@ var UserSchema = new mongoose.Schema({
   height:        { type: Number, required: true },
   represent:     { type: String, required: true },
   sex:           { type: String, required: true },
+  opponentPref:  { type: String, required: true },
   picture:       { type: String, required: true },
   respect:       { type: Number, default: 1 },
   wins:          { type: Number, default: 0 },
