@@ -2,12 +2,12 @@ var mongoose = require('mongoose');
 
 var SpotSchema = new mongoose.Schema({
   name:    { type: String, required: true },
-  latlong: {
+  latlng:  {
                type:     [Number],
                required: true,
                index:    '2d'
            },
-  address: { type: String, required: false},
+  address: { type: String,  required: false},
   indoor:  { type: Boolean, required: false}
 });
 

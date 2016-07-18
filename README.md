@@ -3,7 +3,83 @@
 ##### Node/Express server for the phone app, __JAMN!__ @ http://fast-chamber-70325.herokuapp.com/api
 
 ---
-#### API Routes:
+
+### Models:
+
+##### __User__: 
+
+| Key           | Type    | Validations | Description      | 
+| :------------ | :------ | :---------- | :--------------- |
+| name          | String  | None        | Welcome message. |
+| userName      | String  | None        | Welcome message. |
+| password      | String  | None        | Welcome message. |
+| email         | String  | None        | Welcome message. |
+| zip           | String  | None        | Welcome message. |
+| sex           | String  | None        | Welcome message. |
+| opponentPref  | String  | None        | Welcome message. |
+| height        | Number  | None        | Welcome message. |
+| picture       | String  | None        | Welcome message. |
+| represent     | String  | None        | Welcome message. |
+| respect       | Number  | None        | Welcome message. |
+| wins          | Number  | None        | Welcome message. |
+| losses        | Number  | None        | Welcome message. |
+| forfeits      | Number  | None        | Welcome message. |
+| outsideO      | Number  | None        | Welcome message. |
+| insideO       | Number  | None        | Welcome message. |
+| defense       | Number  | None        | Welcome message. |
+| sportsmanship | Number  | None        | Welcome message. |
+
+
+##### __Spot__: 
+
+| Key           | Type               | Validations | Description      | 
+| :------------ | :----------------- | :---------- | :--------------- |
+| name          | String             | None        | Welcome message. |
+| latlng        | 2D Array - Numbers | None        | Welcome message. |
+| address       | String             | None        | Welcome message. |
+| indoor        | Boolean            | None        | Welcome message. |
+
+
+##### __Game__: 
+
+| Key       | Type              | Validations | Description      | 
+| :-------- | :---------------- | :---------- | :--------------- |
+| player1   | ObjectId          | None        | Welcome message. |
+| player2   | ObjectId          | None        | Welcome message. |
+| status    | String            | None        | Welcome message. |
+| winner_id | ObjectId          | None        | Welcome message. |
+| spot      | ObjectId          | None        | Welcome message. |
+| time      | Date              | None        | Welcome message. |
+| p1rating  | Embedded Document | None        | Welcome message. |
+| p2rating  | Embedded Document | None        | Welcome message. |
+| p1chats   | Embedded Document | None        | Welcome message. |
+| p2chats   | Embedded Document | None        | Welcome message. |
+
+---
+
+#### Embedded Documents in Game Model:
+
+##### __Rating__:
+
+| Key           | Type   | Validations | Description      | 
+| :------------ | :----- | :---------- | :--------------- |
+| insideO       | Number | None        | Welcome message. |
+| outsideO      | Number | None        | Welcome message. |
+| defense       | Number | None        | Welcome message. |
+| sportsmanship | Number | None        | Welcome message. |
+| comment       | String | None        | Welcome message. |
+
+##### __Chat__:
+
+| Key     | Type    | Validations | Description      | 
+| :------ | :------ | :---------- | :--------------- |
+| content | String  | None        | Welcome message. |
+| read    | Boolean | None        | Welcome message. |
+| sent    | Date    | None        | Welcome message. |
+
+---
+
+### API Routes:
 
 __SPLASH__
 

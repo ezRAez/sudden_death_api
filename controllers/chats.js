@@ -5,11 +5,7 @@ var Game     = require("../models/game"),
 //||||||||||||||||||||||||||--
 // EXPORT CHAT CONTROLLER
 //||||||||||||||||||||||||||--
-module.exports = {
-  index:   index,
-  create:  create,
-  destroy: destroy
-};
+module.exports = { index, create, destroy };
 
 
 function index(req, res) {

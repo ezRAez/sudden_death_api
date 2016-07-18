@@ -82,19 +82,19 @@ var newUsers = [
 var newSpots = [
     { // 0
       name:    "Bellevue Rec Center",
-      latlong: [34.084229, -118.282634],
+      latlng:  [34.084229, -118.282634],
       address: "826 Lucile Ave, Los Angeles, CA 90026",
       indoor:  true
     },
     { // 1
       name:    "Dickerson Employee Benefits",
-      latlong: [34.097123, -118.246672],
+      latlng:  [34.097123, -118.246672],
       address: "1918 Riverside Dr, Los Angeles, CA 90039",
       indoor:  false
     },
     { // 2
       name:    "GLASSELL PARK RECREATION CENTER",
-      latlong: [34.115896, -118.233634],
+      latlng:  [34.115896, -118.233634],
       address: "3650 Verdugo Rd., Los Angeles, CA 90065",
       indoor:  false
     }

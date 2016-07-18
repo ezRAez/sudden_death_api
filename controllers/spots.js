@@ -1,7 +1,10 @@
 // Require resource's model(s).
 var Spot = require("../models/spot");
 
-var spotsController = { index, show, create, update, destroy, spotsWithin };
+//||||||||||||||||||||||||||--
+// EXPORT SPOTS CONTROLLER
+//||||||||||||||||||||||||||--
+module.exports = { index, show, create, update, destroy, spotsWithin };
 
 //||||||||||||||||||||||||||--
 // GET SPOTS - SPOT INDEX
@@ -33,7 +36,7 @@ function show(req, res) {
 function create(req, res) {
     var spot          = new Spot();
     spot.name         = req.body.name;
-    spot.latlong      = [req.body.latitude, req.body.longitude];
+    spot.latlng       = [req.body.latitude, req.body.longitude];
     spot.address      = req.body.address;
     spot.indoor       = req.body.indoor;
 
@@ -59,7 +62,7 @@ function update(req, res) {
         // set the new spot information if it exists in the request
         if (req.body.name)       spot.name      = req.body.name;
         if (req.body.latitude && req.body.longitude) {
-          spot.latlong = [req.body.latitude, req.body.longitude];
+          spot.latlng = [req.body.latitude, req.body.longitude];
         }
         if (req.body.address)    spot.address   = req.body.address;
         if (req.body.indoor)     spot.indoor    = req.body.indoor;
@@ -96,7 +99,7 @@ function spotsWithin(req, res) {
   var miles = req.query.miles || 10;
   var distance =  miles / 3963.2;
 
-  var query = Spot.find({'latlong': {
+  var query = Spot.find({'latlng': {
       $near: [
         req.query.lat,
         req.query.lon
@@ -119,8 +122,3 @@ function spotsWithin(req, res) {
   });
 
 }
-
-//||||||||||||||||||||||||||--
-// EXPORT SPOTS CONTROLLER
-//||||||||||||||||||||||||||--
-module.exports = spotsController;
