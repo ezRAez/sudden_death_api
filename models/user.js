@@ -2,15 +2,15 @@ var mongoose = require('mongoose'),
     bcrypt   = require('bcrypt-nodejs');
 
 var UserSchema = new mongoose.Schema({
-  name:          { type: String, required: true },
-  userName:      { type: String, required: true, index: { unique: true }},
-  password:      { type: String, required: true, select: false },
-  email:         { type: String, required: true },
+  name:          { type: String, required: true }, // needs length validations
+  userName:      { type: String, required: true, index: { unique: true }}, // needs length validations
+  password:      { type: String, required: true, select: false }, // needs security and length validations
+  email:         { type: String, required: true }, // needs regex to check if its a valid email
   zip:           { type: String, required: true },
   height:        { type: Number, required: true },
-  represent:     { type: String, required: true },
+  represent:     { type: String },
   sex:           { type: String, required: true },
-  picture:       { type: String, required: true },
+  picture:       { type: String },
   opponentPref:  {
                    type: String,
                    required: true,

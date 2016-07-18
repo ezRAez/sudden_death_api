@@ -7,7 +7,7 @@ var SpotSchema = new mongoose.Schema({
                required: true,
                index:    '2d'
            },
-  address: { type: String  },
+  address: { type: String, required: true  },
   indoor:  { type: Boolean }
 });
 
