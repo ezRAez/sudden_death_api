@@ -93,7 +93,7 @@ var newSpots = [
       indoor:  false
     },
     { // 2
-      name:    "GLASSELL PARK RECREATION CENTER",
+      name:    "Glassell Park Recreation Center",
       latlng:  [34.115896, -118.233634],
       address: "3650 Verdugo Rd., Los Angeles, CA 90065",
       indoor:  false
