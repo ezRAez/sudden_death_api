@@ -8,52 +8,52 @@
 
 ##### __User__: 
 
-| Key           | Type    | Validations | Description      | 
-| :------------ | :------ | :---------- | :--------------- |
-| name          | String  | None        | Welcome message. |
-| userName      | String  | None        | Welcome message. |
-| password      | String  | None        | Welcome message. |
-| email         | String  | None        | Welcome message. |
-| zip           | String  | None        | Welcome message. |
-| sex           | String  | None        | Welcome message. |
-| opponentPref  | String  | None        | Welcome message. |
-| height        | Number  | None        | Welcome message. |
-| picture       | String  | None        | Welcome message. |
-| represent     | String  | None        | Welcome message. |
-| respect       | Number  | None        | Welcome message. |
-| wins          | Number  | None        | Welcome message. |
-| losses        | Number  | None        | Welcome message. |
-| forfeits      | Number  | None        | Welcome message. |
-| outsideO      | Number  | None        | Welcome message. |
-| insideO       | Number  | None        | Welcome message. |
-| defense       | Number  | None        | Welcome message. |
-| sportsmanship | Number  | None        | Welcome message. |
+| Key           | Type    | Validations                   | Description      | 
+| :------------ | :------ | :---------------------------- | :--------------- |
+| name          | String  | required                      | Welcome message. |
+| userName      | String  | required, unique              | Welcome message. |
+| password      | String  | required                      | Welcome message. |
+| email         | String  | required                      | Welcome message. |
+| zip           | String  | required                      | Welcome message. |
+| sex           | String  | required                      | Welcome message. |
+| opponentPref  | String  | required, enum: 'A', 'M', 'F' | Welcome message. |
+| height        | Number  | required                      | Welcome message. |
+| picture       | String  | required                      | Welcome message. |
+| represent     | String  | required                      | Welcome message. |
+| respect       | Number  | None                          | Welcome message. |
+| wins          | Number  | None                          | Welcome message. |
+| losses        | Number  | None                          | Welcome message. |
+| forfeits      | Number  | None                          | Welcome message. |
+| outsideO      | Number  | None                          | Welcome message. |
+| insideO       | Number  | None                          | Welcome message. |
+| defense       | Number  | None                          | Welcome message. |
+| sportsmanship | Number  | None                          | Welcome message. |
 
 
 ##### __Spot__: 
 
 | Key           | Type               | Validations | Description      | 
 | :------------ | :----------------- | :---------- | :--------------- |
-| name          | String             | None        | Welcome message. |
-| latlng        | 2D Array - Numbers | None        | Welcome message. |
+| name          | String             | required    | Welcome message. |
+| latlng        | 2D Array - Numbers | required    | Welcome message. |
 | address       | String             | None        | Welcome message. |
 | indoor        | Boolean            | None        | Welcome message. |
 
 
 ##### __Game__: 
 
-| Key       | Type              | Validations | Description      | 
-| :-------- | :---------------- | :---------- | :--------------- |
-| player1   | ObjectId          | None        | Welcome message. |
-| player2   | ObjectId          | None        | Welcome message. |
-| status    | String            | None        | Welcome message. |
-| winner_id | ObjectId          | None        | Welcome message. |
-| spot      | ObjectId          | None        | Welcome message. |
-| time      | Date              | None        | Welcome message. |
-| p1rating  | Embedded Document | None        | Welcome message. |
-| p2rating  | Embedded Document | None        | Welcome message. |
-| p1chats   | Embedded Document | None        | Welcome message. |
-| p2chats   | Embedded Document | None        | Welcome message. |
+| Key       | Type              | Validations                                                   | Description      | 
+| :-------- | :---------------- | :------------------------------------------------------------ | :--------------- |
+| player1   | ObjectId          | required                                                      | Welcome message. |
+| player2   | ObjectId          | required                                                      | Welcome message. |
+| status    | String            | required, enum: 'pending', 'accepted', 'complete', 'rejected' | Welcome message. |
+| winner_id | ObjectId          | None                                                          | Welcome message. |
+| spot      | ObjectId          | None                                                          | Welcome message. |
+| time      | Date              | None                                                          | Welcome message. |
+| p1rating  | Embedded Document | None                                                          | Welcome message. |
+| p2rating  | Embedded Document | None                                                          | Welcome message. |
+| p1chats   | Embedded Document | None                                                          | Welcome message. |
+| p2chats   | Embedded Document | None                                                          | Welcome message. |
 
 ---
 
@@ -63,19 +63,18 @@
 
 | Key           | Type   | Validations | Description      | 
 | :------------ | :----- | :---------- | :--------------- |
-| insideO       | Number | None        | Welcome message. |
-| outsideO      | Number | None        | Welcome message. |
-| defense       | Number | None        | Welcome message. |
-| sportsmanship | Number | None        | Welcome message. |
-| comment       | String | None        | Welcome message. |
+| insideO       | Number | required    | Welcome message. |
+| outsideO      | Number | required    | Welcome message. |
+| defense       | Number | required    | Welcome message. |
+| sportsmanship | Number | required    | Welcome message. |
+| comment       | String | checkLength | Welcome message. |
 
 ##### __Chat__:
 
-| Key     | Type    | Validations | Description      | 
-| :------ | :------ | :---------- | :--------------- |
-| content | String  | None        | Welcome message. |
-| read    | Boolean | None        | Welcome message. |
-| sent    | Date    | None        | Welcome message. |
+| Key     | Type    | Validations           | Description      | 
+| :------ | :------ | :-------------------- | :--------------- |
+| content | String  | checkLength, required | Welcome message. |
+| read    | Boolean | None                  | Welcome message. |
 
 ---
 

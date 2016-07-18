@@ -13,10 +13,13 @@ var ratingSchema = new mongoose.Schema({
 });
 
 var chatSchema = new mongoose.Schema({
-  content:  { type: String, validate: [checkLength, "Messages must be shorter \
-                                                     than 180 characters."] },
-  read:     Boolean,
-  sent:     Date
+  content:  {
+              type: String,
+              required: true,
+              validate: [checkLength, "Messages must be shorter than 180 \
+                                                            characters."]
+            },
+  read:     Boolean
 });
 
 var GameSchema = new mongoose.Schema({
@@ -32,6 +35,7 @@ var GameSchema = new mongoose.Schema({
              },
   status:    {
                 type:     String,
+                required: true,
                 enum:     ['pending', 'accepted', 'complete', 'rejected']
              },
   winner_id: {

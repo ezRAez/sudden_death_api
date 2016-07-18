@@ -11,7 +11,12 @@ var UserSchema = new mongoose.Schema({
   represent:     { type: String, required: true },
   sex:           { type: String, required: true },
   picture:       { type: String, required: true },
-  opponentPref:  { type: String, default: 'A', enum: ['M', 'F', 'A'] },
+  opponentPref:  {
+                   type: String,
+                   required: true,
+                   default: 'A',
+                   enum: ['M', 'F', 'A']
+                 },
   respect:       { type: Number, default: 1 },
   wins:          { type: Number, default: 0 },
   losses:        { type: Number, default: 0 },
