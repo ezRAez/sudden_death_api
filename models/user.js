@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    Game        = require("../models/game"),
     bcrypt   = require('bcrypt-nodejs');
 
 var UserSchema = new mongoose.Schema({
@@ -49,6 +50,26 @@ UserSchema.methods.comparePassword = function(password) {
   var user = this;
 
   return bcrypt.compareSync(password, user.password);
+};
+
+// update User to have wins and losses
+UserSchema.methods.compileRecord = function() {
+  let user = this;
+
+  Game.find({
+    $or: [ { player1: user._id }, { player2: user._id }]
+  }, function(err, games) {
+    games.forEach(game => {
+      if (game.status === "completed") {
+        if (user._id.equals(game.winner_id)) {
+          user.wins += 1;
+        } else {
+          user.losses += 1;
+        }
+      }
+    });
+    console.log(`${user.name} - W: ${user.wins}, L: ${user.losses}`);
+  });
 };
 
 var User = mongoose.model('User', UserSchema);

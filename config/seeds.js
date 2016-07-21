@@ -116,7 +116,7 @@ Game.remove({}, function(err) {
             { // 0
               player1:   users[1],
               player2:   users[0],
-              status:    "complete",
+              status:    "completed",
               spot:      spots[0],
               time:      new Date(2016, 4, 17),
               winner_id: users[0],
@@ -159,7 +159,7 @@ Game.remove({}, function(err) {
             { // 3
               player1:   users[5],
               player2:   users[2],
-              status:    "complete",
+              status:    "completed",
               spot:      spots[2],
               time:      new Date(2016, 5, 15),
               winner_id: users[5],
@@ -186,10 +186,12 @@ Game.remove({}, function(err) {
 
           Game.create(newGames, function(err, games) {
             if (err) console.log(err);
-
+            users.forEach(function(user, ind) {
+              user.compileRecord();
+            });
             console.log(`Database seeded with ${users.length} users, ${games.length} games, and ${spots.length} spots.`);
-            mongoose.connection.close();
-            process.exit();
+            // mongoose.connection.close();
+            // process.exit();
           }); // Closes Game Create
         }); // Closes User Create
       }); // Closes Spot Create

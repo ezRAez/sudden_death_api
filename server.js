@@ -1,10 +1,10 @@
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var bodyParser   = require('body-parser');
-var debug        = require('debug')('app:http');
-var cookieParser = require('cookie-parser');
+var express      = require('express'),
+    path         = require('path'),
+    favicon      = require('serve-favicon'),
+    logger       = require('morgan'),
+    bodyParser   = require('body-parser'),
+    debug        = require('debug')('app:http'),
+    cookieParser = require('cookie-parser');
 
 // Load local libraries.
 var env      = require('./config/environment'),

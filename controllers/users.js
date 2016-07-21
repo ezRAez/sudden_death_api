@@ -1,4 +1,4 @@
-// Require resource's model(s).
+// Require resource's model(s) and dependencies.
 var User        = require("../models/user"),
     bcrypt      = require('bcrypt-nodejs'),
     jwt         = require('jsonwebtoken'),
