@@ -36,7 +36,7 @@ var GameSchema = new mongoose.Schema({
   status:    {
                 type:     String,
                 required: true,
-                enum:     ['pending', 'accepted', 'complete', 'rejected']
+                enum:     ['pending', 'accepted', 'completed', 'rejected']
              },
   winner_id: {
                 type:     mongoose.Schema.Types.ObjectId,

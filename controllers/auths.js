@@ -15,7 +15,7 @@ function userAuth(req, res, next) {
   // find the user
   User.findOne({
       userName: req.body.userName
-    }).select('_id userName name email password zip height represent picture respect wins losses forfeits outsideO insideO defense sportsmanship')
+    }).select('userName name email password zip height represent picture respect wins losses forfeits outsideO insideO defense sportsmanship')
       .exec(function(err, user) {
 
       if (err) throw err;
