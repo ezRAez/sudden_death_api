@@ -12,7 +12,6 @@ module.exports = { index, userIndex, show, create, update, destroy };
 //|||||||||||||||||||||||||||||||--
 function index(req, res) {
   Game.find({}, function(err, games) {
-
     if (err) res.send(err);
 
     res.json({ success: true, games});
@@ -23,16 +22,13 @@ function index(req, res) {
 // GET GAMES - GAMES INDEX FOR USER
 //|||||||||||||||||||||||||||||||--
 function userIndex(req, res) {
-  Game.find({}, function(err, games) {
-
+  Game.find({$or: [
+    {player1: req.params.user_id},
+    {player2: req.params.user_id}
+  ]}).populate(['player1', 'player2']).exec(function(err, matches){
     if (err) res.send(err);
-    var matches = [];
 
-    games.forEach(function(game) {
-      var p1Id = game.player1.toString(), p2Id = game.player2.toString();
-      if (p1Id === req.params.user_id || p2Id === req.params.user_id) matches.push(game);
-    });
-    res.json({ success: true, matches});
+    res.json({success: true, matches})
   });
 };
 
@@ -70,10 +66,11 @@ function create(req, res) {
 //||||||||||||||||||||||||||--
 function update(req, res) {
   Game.findById(req.params.game_id, function(err, game) {
-    if (req.body.status)    game.status    = req.body.status;
-    if (req.body.winner_id) game.winner_id = req.body.winner_id;
-    if (req.body.spot)      game.spot      = req.body.spot;
-    if (req.body.time)      game.time      = req.body.time;
+    for (var k in req.body) {
+      if (game[k]) {
+        game[k] = req.body[k];
+      }
+    }
 
     game.save(function(err, game) {
       if (err) res.send(err);
