@@ -50,7 +50,6 @@ function create(req, res) {
     newUser.represent    = req.body.represent;
     newUser.picture      = req.body.picture;
 
-
     newUser.save(function(err, user) {
         if (err) {
           // duplicate entry
@@ -100,28 +99,14 @@ function create(req, res) {
 //||||||||||||||||||||||||||--
 function update(req, res) {
   User.findById(req.params.user_id, function(err, user) {
-    console.log(user, req.body.name);
     if (err) res.json(err);
 
     // set the new user information if it exists in the request
-    if (req.body.name)          user.name          = req.body.name;
-    if (req.body.userName)      user.userName      = req.body.userName;
-    if (req.body.password)      user.password      = req.body.password;
-    if (req.body.email)         user.email         = req.body.email;
-    if (req.body.zip)           user.zip           = req.body.zip;
-    if (req.body.sex)           user.sex           = req.body.sex;
-    if (req.body.opponentPref)  user.opponentPref  = req.body.opponentPref;
-    if (req.body.height)        user.height        = req.body.height;
-    if (req.body.represent)     user.represent     = req.body.represent;
-    if (req.body.picture)       user.picture       = req.body.picture;
-    if (req.body.respect)       user.respect       = req.body.respect;
-    if (req.body.wins)          user.wins          = req.body.wins;
-    if (req.body.losses)        user.losses        = req.body.losses;
-    if (req.body.forfeits)      user.forfeits      = req.body.forfeits;
-    if (req.body.outsideO)      user.outsideO      = req.body.outsideO;
-    if (req.body.insideO)       user.insideO       = req.body.insideO;
-    if (req.body.defense)       user.defense       = req.body.defense;
-    if (req.body.sportsmanship) user.sportsmanship = req.body.sportsmanship;
+    for (var k in req.body) {
+      if (user[k]) {
+        user[k] = req.body[k];
+      }
+    }
 
     // save the user
     user.save(function(err, user) {

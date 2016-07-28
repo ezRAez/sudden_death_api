@@ -71,10 +71,11 @@
 
 ##### __Chat__:
 
-| Key     | Type    | Validations           | Description                                                     | 
-| :------ | :------ | :-------------------- | :-------------------------------------------------------------- |
-| content | String  | checkLength, required | Message's content, kept under 180 characters.                   |
-| read    | Boolean | None                  | Once the opponent sees the message, this will change to `true`. |
+| Key       | Type    | Validations           | Description                                                     | 
+| :-------- | :------ | :-------------------- | :-------------------------------------------------------------- |
+| content   | String  | checkLength, required | Message's content, kept under 180 characters.                   |
+| read      | Boolean | None                  | Once the opponent sees the message, this will change to `true`. |
+| createdAt | Date    | required              | Gives the timestamp for when it was created.                    |
 
 ---
 

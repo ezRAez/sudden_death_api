@@ -65,14 +65,14 @@ function create(req, res) {
     if (req.params.user_id === game.player1.toString()) {
       game.p2rating.push(rating);
       game.save(function(err, game) {
-        if (err) res.json(err);
-        res.json({ message: "Rating created.", game: game });
+        if (err) res.json({err, success: false });
+        res.json({ success: true, message: "Rating created.", game: game });
       });
     } else if (req.params.user_id === game.player2.toString()) {
       game.p1rating.push(rating);
       game.save(function(err, game) {
-        if (err) res.json(err);
-        res.json({ message: "Rating created.", game: game });
+        if (err) res.json({err, success: false });
+        res.json({ success: true, message: "Rating created.", game: game });
       });
     }
   });
