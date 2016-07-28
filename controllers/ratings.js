@@ -11,19 +11,26 @@ module.exports = { index, show, create, update, destroy };
 // GET RATINGS - RATINGS INDEX FOR USER
 //|||||||||||||||||||||||||||||||--
 function index(req, res) {
-  Game.find({}, function(err, games) {
+  Game.find({$or: [
+    {player1: req.params.user_id},
+    {player2: req.params.user_id}
+  ]}).populate(['player1', 'player2']).exec(function(err, games){
 
     if (err) res.send(err);
 
-    var id = req.params.user_id;
-    var ratings = [];
+    console.log("GAME AMOUNT", games.length);
+
+    let ratings = [];
     games.forEach(function(game) {
-      if (game.player1.toString() === id) {
+      let p1Id = game.player1._id.toString(),
+          p2Id = game.player2._id.toString();
+      if (p1Id === req.params.user_id && game.p1rating[0]) {
         ratings.push(game.p1rating[0]);
-      } else if (game.player2.toString() === id) {
+      } else if (p2Id === req.params.user_id && game.p2rating[0]) {
         ratings.push(game.p2rating[0])
       }
-    })
+    });
+
     res.json(ratings);
   });
 };
@@ -58,11 +65,13 @@ function create(req, res) {
     if (req.params.user_id === game.player1.toString()) {
       game.p2rating.push(rating);
       game.save(function(err, game) {
+        if (err) res.json(err);
         res.json({ message: "Rating created.", game: game });
       });
     } else if (req.params.user_id === game.player2.toString()) {
       game.p1rating.push(rating);
       game.save(function(err, game) {
+        if (err) res.json(err);
         res.json({ message: "Rating created.", game: game });
       });
     }

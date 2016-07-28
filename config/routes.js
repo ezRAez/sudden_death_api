@@ -53,7 +53,7 @@ router.delete('/games/:game_id',     gamesController.destroy);
 //||||||||||||||||||||||||||--
 // RATING ROUTES
 //||||||||||||||||||||||||||--
-router.get('/users/:user_id/games/:game_id/ratings',               ratingsController.index);
+router.get('/users/:user_id/ratings',                              ratingsController.index);
 router.get('/users/:user_id/games/:game_id/ratings/:rating_id',    ratingsController.show);
 router.post('/users/:user_id/games/:game_id/ratings',              ratingsController.create);
 router.put('/users/:user_id/games/:game_id/ratings/:rating_id',    ratingsController.update);
