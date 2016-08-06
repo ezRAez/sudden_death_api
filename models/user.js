@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    Game        = require("../models/game"),
+    Game     = require("../models/game"),
     bcrypt   = require('bcrypt-nodejs');
 
 var UserSchema = new mongoose.Schema({
