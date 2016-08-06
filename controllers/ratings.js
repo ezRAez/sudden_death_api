@@ -15,7 +15,7 @@ function index(req, res) {
     {player1: req.params.user_id},
     {player2: req.params.user_id}
   ]}).populate(['player1', 'player2']).exec(function(err, games){
-
+    "use strict";
     if (err) res.send(err);
 
     console.log("GAME AMOUNT", games.length);
