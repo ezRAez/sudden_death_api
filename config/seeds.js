@@ -186,12 +186,9 @@ Game.remove({}, function(err) {
 
           Game.create(newGames, function(err, games) {
             if (err) console.log(err);
-            users.forEach(function(user, ind) {
-              user.compileRecord();
-            });
             console.log(`Database seeded with ${users.length} users, ${games.length} games, and ${spots.length} spots.`);
-            // mongoose.connection.close();
-            // process.exit();
+            mongoose.connection.close();
+            process.exit();
           }); // Closes Game Create
         }); // Closes User Create
       }); // Closes Spot Create
