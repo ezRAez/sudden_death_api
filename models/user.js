@@ -54,6 +54,7 @@ UserSchema.methods.comparePassword = function(password) {
 
 // update User to have wins and losses
 UserSchema.methods.compileRecord = function() {
+  "use strict";
   let user = this;
 
   Game.find({
