@@ -8,7 +8,7 @@ var Game = require("../models/game"),
 module.exports = { index, userIndex, show, create, update, destroy };
 
 //|||||||||||||||||||||||||||||||--
-// GET GAMES - GAMES INDEX FOR USER
+// GET ALL GAMES
 //|||||||||||||||||||||||||||||||--
 function index(req, res) {
   Game.find({}, function(err, games) {
