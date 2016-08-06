@@ -68,6 +68,9 @@ UserSchema.methods.compileRecord = function() {
         }
       }
     });
+    user.save(function(err) {
+      console.log(err);
+    })
     console.log(`${user.name} - W: ${user.wins}, L: ${user.losses}`);
   });
 };

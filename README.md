@@ -130,7 +130,7 @@ __RATINGS__
 
 | Route                                                   | HTTP    | Auth    | Query Options | Description                             | 
 | :------------------------------------------------------ | :------ | :------ | :------------ | :-------------------------------------- |
-| `/api/users/:user_id/games/:game_id/ratings`            | GET     | General | None          | Get all ratings of a game.              |
+| `/api/users/:user_id/ratings`                           | GET     | General | None          | Get all ratings of a user.              |
 | `/api/users/:user_id/games/:game_id/ratings/:rating_id` | GET     | General | None          | Get a specific rating.                  |
 | `/api/users/:user_id/games/:game_id/ratings`            | POST    | General | None          | Create a new rating about the opponent. |
 | `/api/users/:user_id/games/:game_id/ratings/:rating_id` | PUT     | General | None          | Update the opponent's rating.           |
